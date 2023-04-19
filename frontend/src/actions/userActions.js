@@ -38,6 +38,8 @@ import {
 
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 
+const baseURL = process.env.REACT_APP_BASE_URL
+
 export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({
@@ -51,7 +53,7 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            '/accounts/login/',
+            `${baseURL}/accounts/login/`,
             { 'email': email, 'password': password },
             config
         )
@@ -96,7 +98,7 @@ export const register = (name, email, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            '/accounts/register/',
+            `${baseURL}/accounts/register/`,
             { 'name': name, 'email': email, 'password': password },
             config
         )
@@ -142,7 +144,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/accounts/${id}/`,
+            `${baseURL}/accounts/${id}/`,
             config
         )
 
@@ -181,7 +183,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/accounts/profile/update/`,
+            `${baseURL}/accounts/profile/update/`,
             user,
             config
         )
@@ -227,7 +229,7 @@ export const listUsers = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/accounts/`,
+            `${baseURL}/accounts/`,
             config
         )
 
@@ -266,7 +268,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `/accounts/delete/${id}/`,
+            `${baseURL}/accounts/delete/${id}/`,
             config
         )
 
@@ -305,7 +307,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/accounts/update/${user.id}/`,
+            `${baseURL}/accounts/update/${user.id}/`,
             user,
             config
         )

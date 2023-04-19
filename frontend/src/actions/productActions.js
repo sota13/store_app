@@ -31,12 +31,14 @@ import {
 
 } from '../constants/productConstants'
 
+const baseURL = process.env.REACT_APP_BASE_URL
+
 
 export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
 
-        const { data } = await axios.get(`products${keyword}`)
+        const { data } = await axios.get(`${baseURL}/products${keyword}`)
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
@@ -57,7 +59,7 @@ export const listTopProducts = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_TOP_REQUEST })
 
-        const { data } = await axios.get(`/products/top/`)
+        const { data } = await axios.get(`${baseURL}/products/top/`)
 
         dispatch({
             type: PRODUCT_TOP_SUCCESS,
@@ -79,7 +81,7 @@ export const listProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/products/${id}`)
+        const { data } = await axios.get(`${baseURL}/products/${id}`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -115,7 +117,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `/products/delete/${id}/`,
+            `${baseURL}/products/delete/${id}/`,
             config
         )
 
@@ -155,7 +157,7 @@ export const createProduct = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            `/products/create/`,
+            `${baseURL}/products/create/`,
             {},
             config
         )
@@ -195,7 +197,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/products/update/${product.id}/`,
+            `${baseURL}/products/update/${product.id}/`,
             product,
             config
         )
@@ -239,7 +241,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
         }
 
         const { data } = await axios.post(
-            `/products/${productId}/reviews/`,
+            `${baseURL}/products/${productId}/reviews/`,
             review,
             config
         )

@@ -30,6 +30,8 @@ import {
 
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants'
 
+const baseURL = process.env.REACT_APP_BASE_URL
+
 
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
@@ -49,7 +51,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            `/orders/add/`,
+            `${baseURL}/orders/add/`,
             order,
             config
         )
@@ -96,7 +98,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/orders/${id}/`,
+            `${baseURL}/orders/${id}/`,
             config
         )
 
@@ -136,7 +138,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/orders/${id}/pay/`,
+            `${baseURL}/orders/${id}/pay/`,
             paymentResult,
             config
         )
@@ -176,7 +178,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/orders/${order.id}/deliver/`,
+            `${baseURL}/orders/${order.id}/deliver/`,
             {},
             config
         )
@@ -217,7 +219,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/orders/myorders/`,
+            `${baseURL}/orders/myorders/`,
             config
         )
 
@@ -256,7 +258,7 @@ export const listOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/orders/`,
+            `${baseURL}/orders/`,
             config
         )
 

@@ -9,6 +9,8 @@ import FormContainer from '../components/FormContainer'
 import { listProductDetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
+const baseURL = process.env.REACT_APP_BASE_URL
+
 
 function ProductEditScreen({ match, history }) {
 
@@ -86,7 +88,7 @@ function ProductEditScreen({ match, history }) {
                 }
             }
 
-            const { data } = await axios.post('/products/upload/', formData, config)
+            const { data } = await axios.post(`${baseURL}/products/upload/`, formData, config)
 
 
             setImage(data)
